@@ -5,107 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Graphs</title>
     <style>
-        /* Flexbox container for graph layout */
+        /* Add a flexbox container for side-by-side layout */
         .graph-container {
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
+            justify-content: space-between; /* Space between graphs */
+            gap: 20px; /* Optional spacing between graphs */
         }
-
-        /* Default small iframe style */
         .graph-container iframe {
-            flex: 1;
-            height: 300px; /* Smaller height */
-            cursor: pointer; /* Indicate clickability */
-            border: none; /* Remove iframe border */
-            transition: transform 0.3s ease, z-index 0.3s ease; /* Smooth zoom effect */
-        }
-
-        /* Fullscreen effect when iframe is clicked */
-        .graph-container iframe.expanded {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 80%; /* Larger width */
-            height: 80%; /* Larger height */
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-            cursor: zoom-out; /* Indicate click to shrink */
-        }
-
-        /* Overlay effect when iframe is expanded */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none; /* Hidden by default */
-            z-index: 999;
-        }
-
-        .overlay.active {
-            display: block; /* Show overlay when active */
+            flex: 1; /* Allow graphs to grow and shrink equally */
+            height: 600px; /* Ensure consistent height */
+            border: none; /* Remove iframe borders */
         }
     </style>
 </head>
 <body>
     <h1>Interactive Graphs</h1>
-    <p>Below are all the interactive graphs for the study:</p>
+    <p>Below are interactive graphs related to the IAM-H2 article titled: "The Role of Hydrogen in Integrated Assessment Models: A Review of Recent Developments."</p>
 
     <!-- Section for Graphs 1, 2, and 3 -->
-    <h2>Hydrogen Production Across C1, C2 and C3 Categories</h2>
+    <h2>Figure 6: Hydrogen Production Across C1, C2 and C3 Categories</h2>
     <div class="graph-container">
         <!-- Embed Graph 1 -->
-        <iframe src="C1-H2-Production-level.html" onclick="toggleFullscreen(this)"></iframe>
+        <iframe src="C1-H2-Production-level.html"></iframe>
 
         <!-- Embed Graph 2 -->
-        <iframe src="C2-H2-Production-level.html" onclick="toggleFullscreen(this)"></iframe>
+        <iframe src="C2-H2-Production-level.html"></iframe>
 
         <!-- Embed Graph 3 -->
-        <iframe src="C3-H2-Production-level.html" onclick="toggleFullscreen(this)"></iframe>
+        <iframe src="C3-H2-Production-level.html"></iframe>
     </div>
 
     <!-- Section for Graphs 4 and 5 -->
-    <h2>Hydrogen Production and Consumption in IPCC C1-C3 Scenarios</h2>
+    <h2>Figure 8: Hydrogen Production and Consumption in IPCC C1-C3 Scenarios</h2>
     <p>Hydrogen production and consumption averages in scenarios limiting global warming to <strong>2°C</strong> or lower (with a probability exceeding <strong>67%</strong>), as categorized by <strong>IPCC C1-C3</strong>.</p>
     <div class="graph-container">
         <!-- Embed Graph 4 -->
-        <iframe src="Consumption_boxplot_interactive.html" onclick="toggleFullscreen(this)"></iframe>
+        <iframe src="Production_boxplot_interactive.html"></iframe>
 
         <!-- Embed Graph 5 -->
-        <iframe src="Consumption_boxplot_interactive.html" onclick="toggleFullscreen(this)"></iframe>
+        <iframe src="Consumption_boxplot_interactive.html"></iframe>
     </div>
-
-    <!-- Overlay for dimming background -->
-    <div class="overlay" onclick="closeFullscreen()"></div>
-
-    <script>
-        // Function to toggle fullscreen for the iframe
-        function toggleFullscreen(iframe) {
-            const overlay = document.querySelector('.overlay');
-
-            if (iframe.classList.contains('expanded')) {
-                iframe.classList.remove('expanded');
-                overlay.classList.remove('active');
-            } else {
-                iframe.classList.add('expanded');
-                overlay.classList.add('active');
-            }
-        }
-
-        // Function to close fullscreen mode
-        function closeFullscreen() {
-            const iframe = document.querySelector('.graph-container iframe.expanded');
-            const overlay = document.querySelector('.overlay');
-
-            if (iframe) {
-                iframe.classList.remove('expanded');
-            }
-            overlay.classList.remove('active');
-        }
-    </script>
 </body>
 </html>
